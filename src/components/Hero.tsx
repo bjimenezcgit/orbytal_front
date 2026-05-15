@@ -1,10 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { stagger } from 'animejs'
-import {
-  animateCharReveal,
-  animateFadeSlideUp,
-  animateHeroGridLines,
-} from '@/hooks/useAnime'
+import { animateCharReveal, animateFadeSlideUp } from '@/hooks/useAnime'
 
 const LINE1 = 'Building Intelligent'
 const LINE2 = 'Digital Growth'
@@ -21,21 +17,27 @@ function splitChars(text: string, prefix: string) {
   ))
 }
 
+/** Evita cortar palabras al hacer wrap (p. ej. INTELLIG + ENT) */
+function splitWords(text: string, prefix: string) {
+  const words = text.split(' ')
+  return words.map((word, wi) => (
+    <span key={`${prefix}-w-${wi}`} className="inline-block whitespace-nowrap">
+      {splitChars(word, `${prefix}-${wi}`)}
+      {wi < words.length - 1 ? <span aria-hidden>&nbsp;</span> : null}
+    </span>
+  ))
+}
+
 export default function Hero() {
-  const svgRef = useRef<SVGSVGElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
   const ctaRowRef = useRef<HTMLDivElement>(null)
   const badgeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const svg = svgRef.current
     const sub = subRef.current
     const ctaRow = ctaRowRef.current
     const badge = badgeRef.current
-    if (!svg || !sub || !ctaRow || !badge) return
-
-    const lineNodes = Array.from(svg.querySelectorAll<SVGLineElement>('line[data-grid-line]'))
-    void animateHeroGridLines(lineNodes)
+    if (!sub || !ctaRow || !badge) return
 
     const chars = Array.from(document.querySelectorAll<HTMLElement>('[data-hero-char]'))
     void animateCharReveal(chars)
@@ -67,44 +69,10 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[100svh] overflow-hidden bg-orbytal-black pt-24 pb-16 md:pt-28"
+      id="hero"
+      className="relative min-h-svh overflow-visible bg-transparent pt-24 pb-24 md:pt-28 md:pb-32"
       aria-labelledby="hero-heading"
     >
-      <svg
-        ref={svgRef}
-        className="pointer-events-none absolute inset-0 h-full w-full text-orbytal-graphite"
-        aria-hidden
-      >
-        {Array.from({ length: 18 }).map((_, i) => (
-          <line
-            key={`v-${i}`}
-            data-grid-line
-            x1={`${(i + 1) * 5.5}%`}
-            y1="0%"
-            x2={`${(i + 1) * 5.5}%`}
-            y2="100%"
-            stroke="currentColor"
-            strokeWidth="1"
-            opacity="0"
-          />
-        ))}
-        {Array.from({ length: 14 }).map((_, i) => (
-          <line
-            key={`h-${i}`}
-            data-grid-line
-            x1="0%"
-            y1={`${(i + 1) * 7}%`}
-            x2="100%"
-            y2={`${(i + 1) * 7}%`}
-            stroke="currentColor"
-            strokeWidth="1"
-            opacity="0"
-          />
-        ))}
-      </svg>
-
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,color-mix(in_srgb,var(--color-orbytal-red)_18%,transparent),transparent_55%)]" />
-
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col px-4 md:px-6">
         <div
           ref={badgeRef}
@@ -115,13 +83,10 @@ export default function Hero() {
 
         <h1
           id="hero-heading"
-          className="max-w-5xl font-bold uppercase leading-[0.92] tracking-tight text-orbytal-white"
-          style={{
-            fontSize: 'clamp(3rem, 8vw, 6rem)',
-          }}
+          className="max-w-5xl font-bold uppercase leading-[0.95] tracking-tight text-orbytal-white text-[2.2rem] sm:text-[2.65rem] md:text-[clamp(2.85rem,7vw,6rem)] md:leading-[0.92]"
         >
-          <span className="mb-2 block md:mb-3">{splitChars(LINE1, 'l1')}</span>
-          <span className="block">{splitChars(LINE2, 'l2')}</span>
+          <span className="mb-1 block sm:mb-2 md:mb-3">{splitWords(LINE1, 'l1')}</span>
+          <span className="block">{splitWords(LINE2, 'l2')}</span>
         </h1>
 
         <p

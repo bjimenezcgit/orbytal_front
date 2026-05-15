@@ -49,13 +49,15 @@ export default function Navbar() {
       style={{ opacity: 0 }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
-        <a href="#" className="group flex flex-col leading-none" onClick={closeMenu}>
-          <span className="font-bold uppercase tracking-[0.2em] text-orbytal-white text-base md:text-lg">
-            Orbytal
-          </span>
-          <span className="text-[0.65rem] font-medium uppercase tracking-[0.28em] text-orbytal-gray-metallic md:text-xs">
-            Digital Group
-          </span>
+        <a href="#" className="block shrink-0 py-0.5" onClick={closeMenu}>
+          <img
+            src="/imgs/logo_side.png"
+            alt="Orbytal Digital Group"
+            className="h-16 max-w-[min(52vw,280px)] object-contain object-left sm:h-12 md:h-14 lg:h-24"
+            width={320}
+            height={90}
+            fetchPriority="high"
+          />
         </a>
 
         <nav className="hidden items-center gap-10 md:flex" aria-label="Principal">

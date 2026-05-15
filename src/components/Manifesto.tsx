@@ -23,7 +23,7 @@ export default function Manifesto() {
     <section
       ref={sectionRef}
       id="manifiesto"
-      className="scroll-mt-24 border-t border-orbytal-graphite bg-orbytal-carbon py-20 md:py-28"
+      className="scroll-mt-24 bg-transparent py-20 md:py-28"
       aria-labelledby="manifiesto-heading"
     >
       <div className="mx-auto max-w-6xl px-4 md:px-6">

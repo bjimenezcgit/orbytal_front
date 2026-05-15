@@ -53,7 +53,7 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="servicios"
-      className="scroll-mt-24 bg-orbytal-black py-20 md:py-28"
+      className="scroll-mt-24 bg-transparent py-20 md:py-28"
       aria-labelledby="servicios-heading"
     >
       <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -89,7 +89,7 @@ export default function Services() {
             className="group relative col-span-1 flex flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon p-8 opacity-0 transition duration-300 hover:border-orbytal-red md:col-span-2 lg:col-span-3"
           >
             <div
-              className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-orbytal-red to-orbytal-red-dark opacity-80"
+              className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-linear-to-b from-orbytal-red to-orbytal-red-dark opacity-80"
               aria-hidden
             />
             <div className="pl-4">

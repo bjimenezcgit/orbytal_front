@@ -22,7 +22,7 @@ export default function About() {
   return (
     <section
       id="nosotros"
-      className="scroll-mt-24 border-t border-orbytal-graphite bg-orbytal-black py-20 md:py-28"
+      className="scroll-mt-24 bg-transparent py-20 md:py-28"
       aria-labelledby="nosotros-heading"
     >
       <div className="mx-auto max-w-6xl px-4 md:px-6">

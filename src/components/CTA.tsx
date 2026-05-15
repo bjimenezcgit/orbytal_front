@@ -21,7 +21,7 @@ export default function CTA() {
     <section
       ref={sectionRef}
       id="contacto"
-      className="scroll-mt-24 border-t border-orbytal-graphite bg-gradient-to-b from-orbytal-black to-orbytal-carbon py-20 md:py-28"
+      className="scroll-mt-24 bg-transparent py-20 md:py-28"
       aria-labelledby="cta-heading"
     >
       <div ref={innerRef} className="mx-auto max-w-3xl px-4 text-center md:px-6">
