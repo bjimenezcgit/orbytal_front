@@ -17,7 +17,6 @@ function splitChars(text: string, prefix: string) {
   ))
 }
 
-/** Evita cortar palabras al hacer wrap (p. ej. INTELLIG + ENT) */
 function splitWords(text: string, prefix: string) {
   const words = text.split(' ')
   return words.map((word, wi) => (
@@ -55,7 +54,7 @@ export default function Hero() {
     void animateFadeSlideUp(badge, {
       duration: 700,
       delay: 180,
-      y: [10, 0],
+      y: [8, 0],
     })
 
     const buttons = Array.from(ctaRow.querySelectorAll<HTMLElement>('a'))
@@ -70,7 +69,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-svh overflow-visible bg-transparent pt-24 pb-24 md:pt-28 md:pb-32"
+      className="relative overflow-visible bg-transparent pt-24 pb-14 md:pt-28 md:pb-20 lg:pt-32"
       aria-labelledby="hero-heading"
     >
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col px-4 md:px-6">

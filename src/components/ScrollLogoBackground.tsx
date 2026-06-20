@@ -102,7 +102,7 @@ export default function ScrollLogoBackground() {
         />
 
         <div
-          className="relative z-[1] w-full overflow-visible"
+          className="relative z-1 w-full overflow-visible"
           style={{ aspectRatio: `${LOGO_W} / ${LOGO_H}` }}
         >
           <img
@@ -118,7 +118,7 @@ export default function ScrollLogoBackground() {
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-orbytal-black from-0% via-orbytal-black/88 via-40% to-transparent to-68% md:via-46% md:to-62%" />
+      <div className="absolute inset-0 bg-linear-to-r from-orbytal-black from-0% via-orbytal-black/88 via-40% to-transparent to-68% md:via-46% md:to-62%" />
     </div>
   )
 }

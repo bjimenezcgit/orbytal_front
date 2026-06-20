@@ -41,19 +41,23 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 overflow-visible border-b transition-all duration-300 ${
         scrolled
-          ? 'border-orbytal-graphite bg-orbytal-black/95 backdrop-blur-md'
-          : 'border-transparent bg-transparent'
+          ? 'border-orbytal-graphite/50 bg-orbytal-black/45 backdrop-blur-xl shadow-[0_8px_32px_color-mix(in_srgb,var(--color-orbytal-black)_35%,transparent)]'
+          : 'border-orbytal-graphite/20 bg-orbytal-black/15 backdrop-blur-md'
       }`}
       style={{ opacity: 0 }}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
-        <a href="#" className="block shrink-0 py-0.5" onClick={closeMenu}>
+      <div className="mx-auto flex h-11 max-w-6xl items-center justify-between gap-4 overflow-visible px-4 md:h-12 md:px-6">
+        <a
+          href="#"
+          className="relative block h-11 w-38 shrink-0 overflow-visible sm:w-44 md:h-12 md:w-50 lg:w-60"
+          onClick={closeMenu}
+        >
           <img
             src="/imgs/logo_side.png"
             alt="Orbytal Digital Group"
-            className="h-16 max-w-[min(52vw,280px)] object-contain object-left sm:h-12 md:h-14 lg:h-24"
+            className="absolute left-0 top-1/2 h-14 w-full max-w-none -translate-y-1/2 object-contain object-left sm:h-15 md:h-16 lg:h-20"
             width={320}
             height={90}
             fetchPriority="high"
@@ -75,7 +79,7 @@ export default function Navbar() {
           <a
             ref={ctaRef}
             href="#servicios"
-            className="rounded-sm bg-orbytal-red px-5 py-2 text-sm font-semibold uppercase tracking-wide text-orbytal-white opacity-0 shadow-[0_0_24px_color-mix(in_srgb,var(--color-orbytal-red)_35%,transparent)] transition hover:bg-orbytal-red-dark"
+            className="rounded-sm bg-orbytal-red px-4 py-1.5 text-sm font-semibold uppercase tracking-wide text-orbytal-white opacity-0 shadow-[0_0_24px_color-mix(in_srgb,var(--color-orbytal-red)_35%,transparent)] transition hover:bg-orbytal-red-dark"
           >
             Comenzar
           </a>
@@ -105,7 +109,7 @@ export default function Navbar() {
       {open ? (
         <div
           id="mobile-menu"
-          className="border-t border-orbytal-graphite bg-orbytal-black/98 px-4 py-6 md:hidden"
+          className="border-t border-orbytal-graphite/50 bg-orbytal-black/70 px-4 py-6 backdrop-blur-xl md:hidden"
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-4">
             <a href="#servicios" className={navLinkClass} onClick={closeMenu}>
