@@ -46,7 +46,7 @@ export default function TeamMemberModal({ member, onClose }: TeamMemberModalProp
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-60 flex items-start justify-center px-4 pt-20 pb-6 md:pt-24"
       role="dialog"
       aria-modal="true"
       aria-labelledby="team-modal-title"
@@ -58,7 +58,7 @@ export default function TeamMemberModal({ member, onClose }: TeamMemberModalProp
         onClick={onClose}
       />
 
-      <div className="relative z-10 flex max-h-[min(92vh,880px)] w-full max-w-2xl flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon shadow-[0_24px_80px_color-mix(in_srgb,var(--color-orbytal-black)_60%,transparent)]">
+      <div className="relative z-10 flex max-h-[min(calc(100vh-6rem),880px)] w-full max-w-2xl flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon shadow-[0_24px_80px_color-mix(in_srgb,var(--color-orbytal-black)_60%,transparent)] md:max-h-[min(calc(100vh-7rem),880px)]">
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-orbytal-graphite px-6 py-5">
           <div className="min-w-0 pr-2">
             <h3 id="team-modal-title" className="text-lg font-bold text-orbytal-white md:text-xl">
