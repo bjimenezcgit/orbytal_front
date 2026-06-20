@@ -27,7 +27,7 @@ const TEAM: TeamMemberProfile[] = [
       'Acompañamiento integral desde el diagnóstico hasta la puesta en producción',
     ],
     objective:
-      'Mi objetivo es ayudar a Rclean a optimizar su operación, mejorar la experiencia de sus clientes y construir una base tecnológica que soporte su crecimiento.',
+      'Mi objetivo es ayudar y optimizar a las empresas en su operación, mejorar la experiencia de sus clientes y construir una base tecnológica que soporte su crecimiento.',
     linkedIn: 'https://www.linkedin.com/in/cristianedc/',
   },
   {
