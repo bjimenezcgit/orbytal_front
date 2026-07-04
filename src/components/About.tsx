@@ -97,7 +97,7 @@ export default function About() {
             </li>
           ))}
         </ul>
-
+{/* 
         <h3 className="mt-14 text-xs font-bold uppercase tracking-[0.25em] text-orbytal-gray-metallic">
           Equipo fundador
         </h3>
@@ -134,7 +134,7 @@ export default function About() {
               </button>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <TeamMemberModal member={selectedMember} onClose={() => setSelectedMember(null)} />
