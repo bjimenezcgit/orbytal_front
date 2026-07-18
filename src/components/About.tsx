@@ -97,44 +97,6 @@ export default function About() {
             </li>
           ))}
         </ul>
-{/* 
-        <h3 className="mt-14 text-xs font-bold uppercase tracking-[0.25em] text-orbytal-gray-metallic">
-          Equipo fundador
-        </h3>
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {TEAM.map(member => (
-            <div key={member.name} className="group relative">
-              <div
-                className="pointer-events-none absolute -inset-2 rounded-xl bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-orbytal-red)_24%,transparent),transparent_70%)] opacity-0 blur-2xl transition duration-500 group-hover:opacity-100"
-                aria-hidden
-              />
-              <button
-                type="button"
-                onClick={() => setSelectedMember(member)}
-                className="relative flex h-full w-full flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon text-left transition duration-300 group-hover:border-orbytal-red"
-              >
-                <div className="relative aspect-4/5 w-full overflow-hidden">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-orbytal-carbon via-orbytal-carbon/40 to-transparent"
-                    aria-hidden
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h4 className="text-base font-bold text-orbytal-white md:text-lg">{member.name}</h4>
-                  <p className="mt-1 text-sm text-orbytal-gray-metallic">{member.role}</p>
-                  <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-wider text-orbytal-red opacity-70 transition group-hover:opacity-100">
-                    Ver perfil
-                  </span>
-                </div>
-              </button>
-            </div>
-          ))}
-        </div> */}
       </div>
 
       <TeamMemberModal member={selectedMember} onClose={() => setSelectedMember(null)} />
