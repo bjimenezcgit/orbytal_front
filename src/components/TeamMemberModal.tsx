@@ -60,11 +60,18 @@ export default function TeamMemberModal({ member, onClose }: TeamMemberModalProp
 
       <div className="relative z-10 flex max-h-[min(calc(100vh-6rem),880px)] w-full max-w-2xl flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon shadow-[0_24px_80px_color-mix(in_srgb,var(--color-orbytal-black)_60%,transparent)] md:max-h-[min(calc(100vh-7rem),880px)]">
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-orbytal-graphite px-6 py-5">
-          <div className="min-w-0 pr-2">
-            <h3 id="team-modal-title" className="text-lg font-bold text-orbytal-white md:text-xl">
-              {member.name}
-            </h3>
-            <p className="mt-1 text-sm text-orbytal-red">{member.role}</p>
+          <div className="flex min-w-0 items-center gap-4 pr-2">
+            <img
+              src={member.photo}
+              alt=""
+              className="h-14 w-14 shrink-0 rounded-full border border-orbytal-graphite object-cover object-top md:h-16 md:w-16"
+            />
+            <div className="min-w-0">
+              <h3 id="team-modal-title" className="text-lg font-bold text-orbytal-white md:text-xl">
+                {member.name}
+              </h3>
+              <p className="mt-1 text-sm text-orbytal-red">{member.role}</p>
+            </div>
           </div>
           <button
             type="button"
