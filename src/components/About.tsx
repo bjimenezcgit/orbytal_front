@@ -59,7 +59,31 @@ const TEAM: TeamMemberProfile[] = [
 
 const PILLARS = ['IA + Automatización', 'Marketing Estratégico', 'Tecnología aplicada'] as const
 
+// Not a security boundary: the bundle is public, this only keeps the team block out of the default view.
+const TEAM_PREVIEW_PARAM = 'orb-equipo'
+const TEAM_PREVIEW_STORAGE_KEY = 'orbytal:team-preview'
+
+function readTeamPreview(): boolean {
+  try {
+    const url = new URL(window.location.href)
+    const value = url.searchParams.get(TEAM_PREVIEW_PARAM)
+
+    if (value === 'on') localStorage.setItem(TEAM_PREVIEW_STORAGE_KEY, '1')
+    if (value === 'off') localStorage.removeItem(TEAM_PREVIEW_STORAGE_KEY)
+
+    if (value !== null) {
+      url.searchParams.delete(TEAM_PREVIEW_PARAM)
+      window.history.replaceState(null, '', url.pathname + url.search + url.hash)
+    }
+
+    return localStorage.getItem(TEAM_PREVIEW_STORAGE_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
 export default function About() {
+  const [showTeam] = useState(readTeamPreview)
   const [selectedMember, setSelectedMember] = useState<TeamMemberProfile | null>(null)
   const teamRef = useRef<HTMLDivElement>(null)
 
@@ -105,49 +129,53 @@ export default function About() {
           ))}
         </ul>
 
-        <h3 className="mt-14 text-xs font-bold uppercase tracking-[0.25em] text-orbytal-gray-metallic">
-          Equipo fundador
-        </h3>
-        <div ref={teamRef} className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map(member => (
-            <div key={member.name} data-team-card className="group relative mx-auto w-full max-w-sm opacity-0 sm:max-w-none">
-              <div
-                className="pointer-events-none absolute -inset-2 rounded-xl bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-orbytal-red)_24%,transparent),transparent_70%)] opacity-0 blur-2xl transition duration-500 group-hover:opacity-100"
-                aria-hidden
-              />
-              <button
-                type="button"
-                onClick={() => setSelectedMember(member)}
-                aria-label={`Ver perfil de ${member.name}`}
-                className="relative flex h-full w-full flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon text-left transition duration-300 group-hover:border-orbytal-red focus-visible:border-orbytal-red focus-visible:outline-none"
-              >
-                <div className="relative aspect-square w-full overflow-hidden">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-                  />
+        {showTeam ? (
+          <>
+            <h3 className="mt-14 text-xs font-bold uppercase tracking-[0.25em] text-orbytal-gray-metallic">
+              Equipo fundador
+            </h3>
+            <div ref={teamRef} className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {TEAM.map(member => (
+                <div key={member.name} data-team-card className="group relative mx-auto w-full max-w-sm opacity-0 sm:max-w-none">
                   <div
-                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-orbytal-carbon via-orbytal-carbon/30 to-transparent"
+                    className="pointer-events-none absolute -inset-2 rounded-xl bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-orbytal-red)_24%,transparent),transparent_70%)] opacity-0 blur-2xl transition duration-500 group-hover:opacity-100"
                     aria-hidden
                   />
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMember(member)}
+                    aria-label={`Ver perfil de ${member.name}`}
+                    className="relative flex h-full w-full flex-col overflow-hidden rounded-lg border border-orbytal-graphite bg-orbytal-carbon text-left transition duration-300 group-hover:border-orbytal-red focus-visible:border-orbytal-red focus-visible:outline-none"
+                  >
+                    <div className="relative aspect-square w-full overflow-hidden">
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-0 bg-linear-to-t from-orbytal-carbon via-orbytal-carbon/30 to-transparent"
+                        aria-hidden
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <h4 className="text-base font-bold text-orbytal-white md:text-lg">{member.name}</h4>
+                      <p className="mt-1 text-sm text-orbytal-gray-metallic">{member.role}</p>
+                      <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-wider text-orbytal-red opacity-70 transition group-hover:opacity-100">
+                        Ver perfil →
+                      </span>
+                    </div>
+                  </button>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h4 className="text-base font-bold text-orbytal-white md:text-lg">{member.name}</h4>
-                  <p className="mt-1 text-sm text-orbytal-gray-metallic">{member.role}</p>
-                  <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-wider text-orbytal-red opacity-70 transition group-hover:opacity-100">
-                    Ver perfil →
-                  </span>
-                </div>
-              </button>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        ) : null}
       </div>
 
-      <TeamMemberModal member={selectedMember} onClose={() => setSelectedMember(null)} />
+      {showTeam ? <TeamMemberModal member={selectedMember} onClose={() => setSelectedMember(null)} /> : null}
     </section>
   )
 }
